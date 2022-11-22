@@ -7,6 +7,8 @@
 
 #define SIZE 100
 
+int bubble_sort(int array[]);
+
 int main(void) {
 	char str[10] = "start";
 	int array[SIZE];
@@ -19,18 +21,11 @@ int main(void) {
 		printf("%d\t", array[i]);
 	}
 	printf("\n");
-//	bubble_sort(array);
-	int tmp = 0;
+	bubble_sort(array);
 
+	long unsigned t;
 	t1 = time(NULL);
-	for (int i = 0; i < SIZE - 1; i++)
-		for (int j = 0; j < SIZE - 1 - i; j++) 
-			if (array[j] > array[j + 1]) {
-				tmp = array[j + 1];
-				array[j + 1] = array[j];
-				array[j] = tmp;
-			}
-//	delay(300);
+	for (t = 0; t<5000000; t++);
 	t2 = time(NULL);
 
 	for (int i = 0; i < SIZE; i++)
@@ -53,12 +48,11 @@ int bubble_sort(int array[]) {
 
 	for(int i = 0; i < SIZE - 1; i++)
 		for (int j = 0; j < SIZE - 1 - i; j++) {
-			if (array[j] < array[j + 1]) {
-				tmp = array[j];
-				array[j] = array[j + 1];
-				array[j + 1] = tmp;
+			if (array[j] > array[j + 1]) {
+				tmp = array[j + 1];
+				array[j + 1] = array[j];
+				array[j] = tmp;
 			}
 		}
-
 	return 0;
 }
