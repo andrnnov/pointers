@@ -7,7 +7,8 @@
 
 #define SIZE 100
 
-int bubble_sort(int array[]);
+void bubble_sort(int* array);
+void insert_sort(int* items, int count);
 
 int main(void) {
 	char str[10] = "start";
@@ -21,18 +22,18 @@ int main(void) {
 		printf("%d\t", array[i]);
 	}
 	printf("\n");
-	bubble_sort(array);
+//	bubble_sort(array);
+	insert_sort(array, SIZE);
 
-	long unsigned t;
 	t1 = time(NULL);
-	for (t = 0; t<5000000; t++);
+	for (long unsigned t = 0; t<5000000; t++);
 	t2 = time(NULL);
 
 	for (int i = 0; i < SIZE; i++)
 		printf("%d\t", array[i]);
 	printf("\n");
 
-	printf("Время в миллисекундах: %0.4lf\n", difftime(t2, t1));
+	printf("Время в секундах: %lf\n", difftime(t2, t1));
 
 	do {
 		printf("Enter string: ");
@@ -43,7 +44,7 @@ int main(void) {
 	return 0;
 }
 
-int bubble_sort(int array[]) {
+void bubble_sort(int* array) {
 	int tmp = 0;
 
 	for(int i = 0; i < SIZE - 1; i++)
@@ -54,5 +55,14 @@ int bubble_sort(int array[]) {
 				array[j] = tmp;
 			}
 		}
-	return 0;
+}
+
+void insert_sort(int* items, int count) {
+	int t, j;
+	for (int i = 1; i < count; ++i) {
+		t = items[i];
+		for (j = i - 1; (j >= 0) && (t < items[j]); j--)
+			items[j + 1] = items[j];
+		items[j + 1] = t;
+	}
 }
